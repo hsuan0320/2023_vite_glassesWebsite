@@ -1,0 +1,74 @@
+@import '../helpers/_flex';
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+
+    .navbar__inner {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .navbar-brand {
+        padding: 1rem;
+    }
+
+    .nav-list {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+
+    .nav-item {
+        flex-grow: 1;
+        flex-basis: 50%;
+        border: 1px solid $white-color;
+    }
+
+    .nav-link {
+        display: inline-block;
+        color: $white-color;
+        padding: 12px;
+        font-size: $h6-font-size;
+    }
+}
+
+
+
+@include media-breakpoint-up(md) {
+    .navbar {
+        .navbar__inner {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .nav-list {
+            width: auto;
+            margin-left: auto;
+        }
+
+        .nav-item {
+            flex-basis: auto;
+            border: 0;
+        }
+
+        .nav-link {
+            font-size: $h5-font-size;
+
+            padding: 0 32px;
+
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .navbar-brand {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}

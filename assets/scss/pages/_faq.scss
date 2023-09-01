@@ -1,0 +1,20 @@
+.qa {
+    &__list {
+        margin-top: 1.5rem;
+    }
+
+    &__item:not(:last-child) {
+        margin-bottom: 1.5rem;
+    }
+
+
+    &__title {
+        margin-bottom: 0.5rem;
+    }
+
+    @include media-breakpoint-up(md) {
+        &__item:not(:last-child) {
+            margin-bottom: 2rem;
+        }
+    }
+}

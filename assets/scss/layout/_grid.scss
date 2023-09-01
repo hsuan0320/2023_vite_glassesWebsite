@@ -1,0 +1,67 @@
+// 引用 math 模組
+@use "sass:math";
+
+// 定義格線系統的列數和間距
+$grid-columns: 12;
+$grid-gutter: 1.5rem;
+
+// 響應式斷點 mixin，用來定義不同螢幕大小的樣式
+@mixin media-breakpoint-up($breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    // 檢查斷點值是否有效
+    @if not $breakpoint-value {
+        @error "無效的斷點：#{$breakpoint}。";
+    }
+
+    // 使用 @media 定義最小寬度的樣式
+    @media (min-width: $breakpoint-value) {
+        @content;
+    }
+}
+
+// 定義整個 row 的外觀，使用 flex 佈局和間距
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: math.div(-$grid-gutter, 2);
+    margin-right: math.div(-$grid-gutter, 2);
+
+    >* {
+        flex-shrink: 0;
+        width: 100%;
+        max-width: 100%;
+        padding-right: calc(var(--gutter-x) * .5);
+        padding-left: calc(var(--gutter-x) * .5);
+        margin-top: var(--gutter-y);
+    }
+}
+
+.col {
+    flex: 1 0 0%;
+}
+
+// 使用 @for 迴圈生成不同寬度的列
+@for $i from 1 through $grid-columns {
+    .col-#{$i} {
+        flex: 0 0 auto;
+        width: percentage(math.div($i, $grid-columns));
+        padding-left: math.div($grid-gutter, 2);
+        padding-right: math.div($grid-gutter, 2);
+    }
+}
+
+// 使用 @each 迴圈遍歷斷點，並在每個斷點下定義不同寬度的列
+@each $breakpoint,
+$breakpoint-value in $breakpoints {
+    @include media-breakpoint-up($breakpoint) {
+        @for $i from 1 through $grid-columns {
+            .col-#{$breakpoint}-#{$i} {
+                flex: 0 0 auto;
+                width: percentage(math.div($i, $grid-columns));
+                padding-left: math.div($grid-gutter, 2);
+                padding-right: math.div($grid-gutter, 2);
+            }
+        }
+    }
+}

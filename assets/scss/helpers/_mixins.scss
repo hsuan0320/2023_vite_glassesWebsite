@@ -1,0 +1,80 @@
+// 響應式
+
+$breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px
+);
+
+@mixin media-breakpoint-up($breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    @if $breakpoint-value {
+        @media (min-width: $breakpoint-value) {
+            @content;
+        }
+    }
+
+    @else {
+        @error "無效的斷點：#{$breakpoint}。";
+    }
+}
+
+@mixin media-breakpoint-down($breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    @if $breakpoint-value {
+        @media (max-width: calc(#{$breakpoint-value} - 1px)) {
+            @content;
+        }
+    }
+
+    @else {
+        @error "無效的斷點：#{$breakpoint}。";
+    }
+}
+
+
+@include media-breakpoint-up(sm) {
+    /* 小螢幕（576px及以上）的樣式 */
+}
+
+@include media-breakpoint-down(md) {
+    /* 中型螢幕（767px及以下）的樣式 */
+}
+
+@include media-breakpoint-up(lg) {
+    /* 大型螢幕（992px及以上）的樣式 */
+}
+
+@include media-breakpoint-down(xl) {
+    /* 超大型螢幕（1199px及以下）的樣式 */
+}
+
+@include media-breakpoint-up(xxl) {
+    /* 超超大型螢幕（1400px及以上）的樣式 */
+}
+
+
+@include media-breakpoint-up(sm) {
+    /* 小螢幕（576px及以上）的樣式 */
+}
+
+@include media-breakpoint-up(md) {
+    /* 中型螢幕（768px及以上）的樣式 */
+}
+
+@include media-breakpoint-up(lg) {
+    /* 大型螢幕（992px及以上）的樣式 */
+}
+
+@include media-breakpoint-up(xl) {
+    /* 超大型螢幕（1200px及以上）的樣式 */
+}
+
+@include media-breakpoint-up(xxl) {
+    /* 超超大型螢幕（1400px及以上）的樣式 */
+}

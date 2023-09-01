@@ -1,0 +1,61 @@
+// Button Base styles
+.btn {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+
+  &:focus,
+  &.focus {
+    outline: 0;
+    box-shadow: none;
+  }
+}
+
+// 寫法一
+@mixin btn($color, $hover-color) {
+  color: $white-color;
+  background-color: $color;
+  padding: 6px 12px;
+  transition: background-color 300ms;
+
+  &:hover {
+    background-color: darken($color, 10);
+    // darken($color, $amount)
+    // 使$color變深。$amount必須是介於0%和100%（含）之間的數字。
+  }
+}
+
+
+// 寫法二:給預設值
+@mixin default($color: #6c757d, $hover-color: darken($color, 15)) {
+  color: $white-color;
+  background-color: $color;
+  font-size: $font-size-base;
+  padding: 6px 12px;
+  transition: background-color 300ms;
+
+  &:hover {
+    background-color: $hover-color;
+  }
+
+  @include media-breakpoint-up(md) {
+    font-size: $h5-font-size;
+
+  }
+}
+
+.btn-default {
+  @include default();
+}
+
+.btn-primary {
+  @include default($primary-color);
+}
+
+.btn-black {
+  @include default($black-color);
+
+}

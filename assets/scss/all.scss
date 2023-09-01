@@ -1,0 +1,23 @@
+@import "plugin/aos";
+
+@import "helpers/variables";
+@import "base/reset";
+@import "base/typography";
+@import "helpers/mixins";
+@import "utilities/spacing.scss";
+@import "utilities/text.scss";
+@import "utilities/colors.scss";
+@import "utilities/background.scss";
+@import "utilities/display.scss";
+@import "utilities/flex.scss";
+@import "utilities/section";
+@import "layout/grid";
+@import "layout/container";
+@import "layout/header";
+@import "layout/footer";
+@import "components/form";
+@import "components/button";
+@import "components/card";
+@import "pages/home";
+@import "pages/faq";
+@import "pages/store";
